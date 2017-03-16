@@ -2,16 +2,14 @@
 <html>
 <head>
 	<title>Crystals Collector</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
 <body>
-<style type="text/css">
-	body {font-family: 'Dosis', sans-serif;}
- span {font-weight: bolder;
- 	color:#AE2FFF;}
-</style>
+
 <div class="container">
 <h1 class="text-center"> Crystal Collector</h1>
 
@@ -23,103 +21,17 @@
 
 <div id="crystals"></div>
 
-		<img class="crystals img-rounded" id="blue-crystal" src="blue-crystal.jpg">
-		<img class="crystals img-rounded" id="lavender-crystal" src="lavender-crystal.jpg">
-		<img class="crystals img-rounded" id="pink-crystal" src="pink-crystal.jpg">
-		<img class="crystals img-rounded" id="purple-crystal" src="purple-crystal.jpg"> 
+		<img class="crystals img-rounded" id="blue-crystal" src="assets/images/blue-crystal.jpg">
+		<img class="crystals img-rounded" id="lavender-crystal" src="assets/images/lavender-crystal.jpg">
+		<img class="crystals img-rounded" id="pink-crystal" src="assets/images/pink-crystal.jpg">
+		<img class="crystals img-rounded" id="purple-crystal" src="assets/images/purple-crystal.jpg"> 
 </div>
 <h2 class="text-center">Score: <span id="counter"></span></h2>
 <h3 class="text-center"> Wins: <span id="wins"></span></h3>
 <h3 class="text-center"> Losses: <span id="losses"></span></h3>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 
-<script type="text/javascript">
-
-
-var wins= 0;
-var losses= 0;
-var counter=0;
-gameOver = false;
-
-
-// document.ready for first loading of page - target number and number for each crystal chosen randomly. 
-$ (document).ready(function() { 
-
-targetNumber = [Math.floor(Math.random()*50)+25];
- 
-  $("#number-to-guess").text(targetNumber);
-
-   	var crystals1= (Math.floor(Math.random() * 11))+1;
-    var crystals2= (Math.floor(Math.random() * 11))+1;
-    var crystals3= (Math.floor(Math.random() * 11))+1;
-    var crystals4= (Math.floor(Math.random() * 11))+1;
-
-console.log(crystals1);
-console.log(crystals2);
-
-// restart function to run after a win or loss is achieved, I can't get the counter to reset to 0 untill after I have clicked another crystal....:(
-function restart(){
-	counter = 0;
-	targetNumber = [Math.floor(Math.random()*50)+25];
-	$("#number-to-guess").text(targetNumber);
-	targetNumber= Math.floor(Math.random()*50+25);
-	var crystals1= (Math.floor(Math.random() * 11))+1;
-	var crystals2= (Math.floor(Math.random() * 11))+1;
-	var crystals3= (Math.floor(Math.random() * 11))+1;
-	var crystals4= (Math.floor(Math.random() * 11))+1;
-	gameOver=false;
-}
-
-// on click events for each crystal, update counter with the value of that crystal for that round, print the the counter, checkScore function to see if a win or loss has been achieved.
-
-$("#blue-crystal").on("click", function() {
-	counter = counter + crystals1;
-	$("#counter").html(counter);
-	checkScore();
-
-});
-
-$("#lavender-crystal").on("click", function() {
-	counter = counter + crystals2;
-	$("#counter").html(counter);
-	checkScore();
-});
-
-$("#pink-crystal").on("click", function() {
-	counter = counter + crystals3;
-	$("#counter").html(counter);
-	checkScore();
-});
-
-$("#purple-crystal").on("click", function() {
-	counter = counter + crystals4;
-	$("#counter").html(counter);
-	checkScore();
-});
-
-// checkScore function if else statment, if counter = target number you win! restart function is run. If your counter is larger than target number you lose! restart function is run. the wins and losses counters are updated by ++. 
-function checkScore(){
-
-        if (counter == targetNumber) {
-            gameOver=true;
-            wins++;
-            $("#wins").html(wins);
-           	restart();
-			alert("You Win!");
-        }
-
-		if (counter > targetNumber) {
-            losses++;
-            $("#losses").html(losses);
-           	restart();
-            alert("You Lose!"); 
-             
-        }
-    }
-
-});
-  
-</script>
+<script type="text/javascript" src ="assets/javascript/game.js"></script>
 
 </body>
 </html>
