@@ -2,18 +2,199 @@
 <html>
 <head>
 	<title>Crystals Collector</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+
 </head>
 <body>
+<style type="text/css">
+	body {font-family: 'Dosis', sans-serif;}
 
-<img src="blue-crystal.jpg">
-<img src="lavender-crystal.jpg">
-<img src="pink-crystal.jpg">
-<img src="purple-crystal.jpg">
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js">
+</style>
+<div class="container">
+<h1 class="text-center"> Crystal Collector</h1>
 
 
-	
+ <h3 class="text-center">Number to Guess: <span id="number-to-guess"></span></h3>
+
+ 
+
+
+<div id="crystals"></div>
+
+		<img class="crystals img-rounded" id="blue-crystal" src="blue-crystal.jpg">
+		<img class="crystals img-rounded" id="lavender-crystal" src="lavender-crystal.jpg">
+		<img class="crystals img-rounded" id="pink-crystal" src="pink-crystal.jpg">
+		<img class="crystals img-rounded" id="purple-crystal" src="purple-crystal.jpg"> 
+</div>
+<h3 class="text-center">Score: <span id="counter"></span></h3>
+<h3 class="text-center"> Wins: <span id="wins"></span></h3>
+<h3 class="text-center"> Losses: <span id="losses"></span></h3>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+<script type="text/javascript">
+
+
+var wins= 0;
+var losses= 0;
+var counter=0;
+gameOver= false;
+var targetNumber = 0;
+var numberOptions = [10, 11, 7, 4, 5, 6];
+
+// document.ready for first loading of page - target number and number for each crystal chosen randomly. 
+$ (document).ready(function() { 
+
+targetNumber = [Math.floor(Math.random()*50)+25];
+ 
+  $("#number-to-guess").text(targetNumber);
+
+   	var crystals1= (Math.floor(Math.random() * 11))+1;
+    var crystals2= (Math.floor(Math.random() * 11))+1;
+    var crystals3= (Math.floor(Math.random() * 11))+1;
+    var crystals4= (Math.floor(Math.random() * 11))+1;
+
+console.log(crystals1);
+console.log(crystals2);
+
+
+
+
+$("#blue-crystal").on("click", function() {
+	counter = counter + crystals1;
+	$("#counter").html(counter);
+	checkScore();
+
+});
+
+$("#lavender-crystal").on("click", function() {
+	counter = counter + crystals2;
+	$("#counter").html(counter);
+	checkScore();
+});
+
+$("#pink-crystal").on("click", function() {
+	counter = counter + crystals3;
+	$("#counter").html(counter);
+	checkScore();
+});
+
+$("#purple-crystal").on("click", function() {
+	counter = counter + crystals4;
+	$("#counter").html(counter);
+	checkScore();
+});
+
+function checkScore(){
+
+        if (counter == targetNumber) {
+            gameOver=true;
+            wins++;
+            $("#wins").html(losses)
+            // restart();
+        
+
+        }
+if (counter > targetNumber) {
+            losses++;
+            $("#losses").html(losses)
+           // restart();
+            console.log(targetNumber);
+        
+
+
+        }
+    }
+
+});
+  
+//   var increment = numberOptions[Math.floor(Math.random()*numberOptions.length)];
+
+// 	console.log(increment);
+
+//   $("#blue-crystal").on("click", function() {
+
+//    counter += increment;
+
+//     alert("Your new score is: " + counter);
+// if (counter === targetNumber) {
+
+//       // If the numbers match we'll celebrate the user's win.
+//       alert("You win!");
+//     }
+//      else if (counter >= targetNumber) {
+
+//       // Then they are alerted with a loss.
+//       alert("You lose!!");
+//     }
+//   });
+
+
+
+// 	$("#lavender-crystal").on("click", function() {
+
+//     counter += increment;
+
+//     alert("Your new score is: " + counter);
+// if (counter === targetNumber) {
+
+//       // If the numbers match we'll celebrate the user's win.
+//       alert("You win!");
+//     }
+
+//      else if (counter >= targetNumber) {
+
+//       // Then they are alerted with a loss.
+//       alert("You lose!!");
+//     }
+//   });
+
+
+
+// $("#pink-crystal").on("click", function() {
+
+//     counter += increment;
+
+//     alert("Your new score is: " + counter);
+// if (counter === targetNumber) {
+
+//       // If the numbers match we'll celebrate the user's win.
+//       alert("You win!");
+//     }
+
+//      else if (counter >= targetNumber) {
+
+//       // Then they are alerted with a loss.
+//       alert("You lose!!");
+//     }
+//   });
+
+
+ 
+
+// 	$("#purple-crystal").on("click", function() {
+
+//     counter += increment;
+
+//     alert("Your new score is: " + counter);
+// if (counter === targetNumber) {
+
+//       // If the numbers match we'll celebrate the user's win.
+//       alert("You win!");
+//     }
+
+//      else if (counter >= targetNumber) {
+
+//       // Then they are alerted with a loss.
+//       alert("You lose!!");
+//     }
+//   });
+ 
+
+
+
 
 </script>
+
 </body>
 </html>
