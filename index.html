@@ -9,13 +9,14 @@
 <body>
 <style type="text/css">
 	body {font-family: 'Dosis', sans-serif;}
-
+ span {font-weight: bolder;
+ 	color:#AE2FFF;}
 </style>
 <div class="container">
 <h1 class="text-center"> Crystal Collector</h1>
 
 
- <h3 class="text-center">Number to Guess: <span id="number-to-guess"></span></h3>
+ <h2 class="text-center">Number to Guess: <span id="number-to-guess"></span></h2>
 
  
 
@@ -27,7 +28,7 @@
 		<img class="crystals img-rounded" id="pink-crystal" src="pink-crystal.jpg">
 		<img class="crystals img-rounded" id="purple-crystal" src="purple-crystal.jpg"> 
 </div>
-<h3 class="text-center">Score: <span id="counter"></span></h3>
+<h2 class="text-center">Score: <span id="counter"></span></h2>
 <h3 class="text-center"> Wins: <span id="wins"></span></h3>
 <h3 class="text-center"> Losses: <span id="losses"></span></h3>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
@@ -56,7 +57,9 @@ targetNumber = [Math.floor(Math.random()*50)+25];
 console.log(crystals1);
 console.log(crystals2);
 
+// restart function to run after a win or loss is achieved, I can't get the counter to reset to 0 untill after I have clicked another crystal....:(
 function restart(){
+	counter = 0;
 	targetNumber = [Math.floor(Math.random()*50)+25];
 	$("#number-to-guess").text(targetNumber);
 	targetNumber= Math.floor(Math.random()*50+25);
@@ -64,11 +67,10 @@ function restart(){
 	var crystals2= (Math.floor(Math.random() * 11))+1;
 	var crystals3= (Math.floor(Math.random() * 11))+1;
 	var crystals4= (Math.floor(Math.random() * 11))+1;
-	counter=0;
 	gameOver=false;
 }
 
-
+// on click events for each crystal, update counter with the value of that crystal for that round, print the the counter, checkScore function to see if a win or loss has been achieved.
 
 $("#blue-crystal").on("click", function() {
 	counter = counter + crystals1;
@@ -95,24 +97,23 @@ $("#purple-crystal").on("click", function() {
 	checkScore();
 });
 
+// checkScore function if else statment, if counter = target number you win! restart function is run. If your counter is larger than target number you lose! restart function is run. the wins and losses counters are updated by ++. 
 function checkScore(){
 
         if (counter == targetNumber) {
             gameOver=true;
             wins++;
             $("#wins").html(wins);
-            alert("You Win!");
-           restart();
-
+           	restart();
+			alert("You Win!");
         }
 
 		if (counter > targetNumber) {
             losses++;
             $("#losses").html(losses);
-            alert("You Lose!")
-           restart();
-            console.log(targetNumber);
-        
+           	restart();
+            alert("You Lose!"); 
+             
         }
     }
 
